@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Kalk</string>
+
+    <string name="course_code_hint">
+        <i>Course Code Here</i>
+    </string>
+
+    <string name="credit_unit_hint">
+        <i>Credit Unit Here</i>
+    </string>
+</resources>

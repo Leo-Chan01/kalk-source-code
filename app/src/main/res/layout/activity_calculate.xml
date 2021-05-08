@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CalculationActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/notice_cardview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:backgroundTint="@color/purple_700"
+        app:cardCornerRadius="8dp"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/course_choice_spinner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/course_choice_spinner">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:padding="8dp"
+            android:text="Pick a course here"
+            android:textColor="@color/white" />
+    </androidx.cardview.widget.CardView>
+
+
+    <Spinner
+        android:id="@+id/course_choice_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/notice_cardview"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/notice_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Input Grade here"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_text_grade"
+        app:layout_constraintEnd_toEndOf="@id/notice_cardview"
+        app:layout_constraintStart_toStartOf="@id/notice_cardview"
+        app:layout_constraintTop_toTopOf="@id/edit_text_grade" />
+
+    <EditText
+        android:id="@+id/edit_text_grade"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@id/course_choice_spinner"
+        app:layout_constraintStart_toStartOf="@id/course_choice_spinner"
+        app:layout_constraintTop_toBottomOf="@id/course_choice_spinner" />
+
+
+    <Button
+        android:id="@+id/next_course_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:backgroundTint="@color/purple_700"
+        android:text="next course"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintEnd_toEndOf="@id/edit_text_grade"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="@id/edit_text_grade"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_grade" />
+
+    <Button
+        android:id="@+id/previous_course_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple_700"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="previous"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toBottomOf="@id/next_course_button"
+        app:layout_constraintEnd_toEndOf="@id/notice_text"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="@id/notice_text"
+        app:layout_constraintTop_toTopOf="@id/next_course_button" />
+
+    <Button
+        android:id="@+id/done_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:backgroundTint="@color/purple_700"
+        android:text="done"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/previous_course_button" />
+</androidx.constraintlayout.widget.ConstraintLayout>
