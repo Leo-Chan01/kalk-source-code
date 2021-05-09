@@ -23,6 +23,7 @@ public class CourseActivity extends AppCompatActivity {
     private Course mSingleCourse;
     private String mCourseCode;
     private int mCreditUnit;
+    private final ArrayList<Course> mCoursesArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,8 @@ public class CourseActivity extends AppCompatActivity {
                 mCreditUnit = Integer.parseInt(mCreditUnitEditText.getText().toString());
                 mCreditUnitEditText.clearComposingText();
                 mSingleCourse = new Course(mCourseCode, mCreditUnit);
+
+                mCoursesArrayList.add(mSingleCourse);
 
                 if (mCourseCode.equals("")) {
                     Toast.makeText(CourseActivity.this, "INVALID REQUEST", Toast.LENGTH_LONG).show();
