@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CalculationActivity">
-
     <androidx.cardview.widget.CardView
         android:id="@+id/notice_cardview"
         android:layout_width="wrap_content"
@@ -14,93 +13,103 @@
         android:backgroundTint="@color/purple_700"
         app:cardCornerRadius="8dp"
         app:cardUseCompatPadding="true"
-        app:contentPadding="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/course_choice_spinner"
+        app:contentPadding="8dp"
+        app:contentPaddingLeft="10dp"
+        app:contentPaddingRight="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/edit_text_course_choice"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/course_choice_spinner">
+        app:layout_constraintTop_toTopOf="@id/edit_text_course_choice">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
-            android:padding="8dp"
-            android:text="Pick a course here"
+            android:text="@string/pick_a_course"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/white" />
     </androidx.cardview.widget.CardView>
 
-
-    <Spinner
-        android:id="@+id/course_choice_spinner"
+    <EditText
+        android:id="@+id/edit_text_course_choice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:autofillHints="true"
+        android:hint="@string/course_hint"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/notice_cardview"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <TextView
-        android:id="@+id/notice_text"
-        android:layout_width="0dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/grade_notice_cardview"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Input Grade here"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@color/purple_700"
+        android:backgroundTint="@color/purple_700"
+        app:cardCornerRadius="8dp"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="8dp"
+        app:contentPaddingLeft="16dp"
+        app:contentPaddingRight="16dp"
         app:layout_constraintBottom_toBottomOf="@+id/edit_text_grade"
         app:layout_constraintEnd_toEndOf="@id/notice_cardview"
         app:layout_constraintStart_toStartOf="@id/notice_cardview"
-        app:layout_constraintTop_toTopOf="@id/edit_text_grade" />
+        app:layout_constraintTop_toTopOf="@id/edit_text_grade">
+
+        <TextView
+            android:id="@+id/notice_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/input_grade"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/white" />
+    </androidx.cardview.widget.CardView>
 
     <EditText
         android:id="@+id/edit_text_grade"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="@id/course_choice_spinner"
-        app:layout_constraintStart_toStartOf="@id/course_choice_spinner"
-        app:layout_constraintTop_toBottomOf="@id/course_choice_spinner" />
-
+        android:autofillHints="true"
+        android:hint="@string/grade_hint"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@id/edit_text_course_choice"
+        app:layout_constraintStart_toStartOf="@id/edit_text_course_choice"
+        app:layout_constraintTop_toBottomOf="@id/edit_text_course_choice" />
 
     <Button
         android:id="@+id/next_course_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:backgroundTint="@color/purple_700"
-        android:text="next course"
+        android:background="@drawable/ic_baseline_arrow_right_24"
+        android:backgroundTint="@color/kalk_green"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        app:layout_constraintEnd_toEndOf="@id/edit_text_grade"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintStart_toStartOf="@id/edit_text_grade"
-        app:layout_constraintTop_toBottomOf="@id/edit_text_grade" />
+        app:layout_constraintBottom_toBottomOf="@+id/previous_course_button"
+        app:layout_constraintStart_toEndOf="@+id/previous_course_button"
+        app:layout_constraintTop_toTopOf="@+id/previous_course_button" />
 
     <Button
         android:id="@+id/previous_course_button"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/purple_700"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:text="previous"
-        android:textAllCaps="true"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/ic_baseline_arrow_left_24"
+        android:backgroundTint="@color/kalk_green"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        app:layout_constraintBottom_toBottomOf="@id/next_course_button"
-        app:layout_constraintEnd_toEndOf="@id/notice_text"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintStart_toStartOf="@id/notice_text"
-        app:layout_constraintTop_toTopOf="@id/next_course_button" />
+        app:layout_constraintStart_toStartOf="@id/grade_notice_cardview"
+        app:layout_constraintTop_toBottomOf="@+id/grade_notice_cardview" />
 
     <Button
         android:id="@+id/done_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
         android:backgroundTint="@color/purple_700"
-        android:text="done"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/previous_course_button" />
+        android:text="@string/done"
+        app:layout_constraintBottom_toBottomOf="@+id/next_course_button"
+        app:layout_constraintEnd_toEndOf="@+id/edit_text_grade"
+        app:layout_constraintStart_toEndOf="@+id/next_course_button"
+        app:layout_constraintTop_toTopOf="@+id/next_course_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
