@@ -51,10 +51,13 @@ public class CourseActivity extends AppCompatActivity {
                 mCreditUnit = Integer.parseInt(mCreditUnitEditText.getText().toString());
                 mCreditUnitEditText.clearComposingText();
                 mSingleCourse = new Course(mCourseCode, mCreditUnit);
-                if (mCourseCode == "") {
+
+                if (mCourseCode.equals("")) {
                     Toast.makeText(CourseActivity.this, "INVALID REQUEST", Toast.LENGTH_LONG).show();
+                    finish();
+                } else {
+                    Toast.makeText(CourseActivity.this, "ADDED", Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(CourseActivity.this, "ADDED", Toast.LENGTH_LONG).show();
             }
         });
     }
