@@ -1,5 +1,6 @@
 package com.raym.kalk;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -15,18 +16,13 @@ public class ResultActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
         mNoticeGradeResult = findViewById(R.id.notice_grade_result);
         mGradeResult = findViewById(R.id.grade_result);
 
-        mFinalResult = getResultFromCalculationActivity();
-        displayResult();
+        Intent calculationActivityIntent = getIntent();
+        mFinalResult = calculationActivityIntent.getIntExtra(Intent.EXTRA_TEXT, 0);
+        mGradeResult.setText(mFinalResult);
     }
 
-    private int getResultFromCalculationActivity() {
-        return 0;
-    }
-
-    private void displayResult() {
-
-    }
 }

@@ -6,24 +6,24 @@ public class Calculator {
     float mResult;
     int mCreditLoad;
     int mTotalCreditUnits;
-    private int mTotalCreditLoad;
+    int mTotalCreditLoad;
 
-    int calculateTotalCreditUnits(int creditUnit) {
+    public int calculateTotalCreditUnits(int creditUnit) {
         mTotalCreditUnits += creditUnit;
         return mTotalCreditUnits;
     }
 
-    int calculateCreditLoad(int creditUnit, int gradeValue) {
+    public int calculateCreditLoad(int creditUnit, int gradeValue) {
         mCreditLoad = creditUnit * gradeValue;
         return mCreditLoad;
     }
 
-    int calculateTotalCreditLoad(int creditLoad) {
+    public int calculateTotalCreditLoad(int creditLoad) {
         mTotalCreditLoad += creditLoad;
         return mTotalCreditLoad;
     }
 
-    float calculateGP(int totalCreditLoad, int totalCreditUnits) {
+    public float calculateGP(int totalCreditLoad, int totalCreditUnits) {
         mResult = (float) totalCreditLoad / totalCreditUnits;
         return mResult;
     }
