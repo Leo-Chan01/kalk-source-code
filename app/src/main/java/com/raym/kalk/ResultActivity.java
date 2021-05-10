@@ -10,7 +10,7 @@ public class ResultActivity extends AppCompatActivity {
 
     private TextView mNoticeGradeResult;
     private TextView mGradeResult;
-    private int mFinalResult;
+    private String mFinalResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class ResultActivity extends AppCompatActivity {
         mGradeResult = findViewById(R.id.grade_result);
 
         Intent calculationActivityIntent = getIntent();
-        mFinalResult = calculationActivityIntent.getIntExtra(Intent.EXTRA_TEXT, 0);
+        mFinalResult = calculationActivityIntent.getStringExtra(Intent.EXTRA_TEXT);
         mGradeResult.setText(mFinalResult);
     }
 

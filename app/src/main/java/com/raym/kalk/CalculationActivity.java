@@ -23,6 +23,7 @@ public class CalculationActivity extends AppCompatActivity {
     private int mGradeEquivalent;
     private float mResult;
     private int mCreditUnit;
+    public String mFinalResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +60,9 @@ public class CalculationActivity extends AppCompatActivity {
         //when the user clicks on the done button
         doneButton.setOnClickListener(view -> {
             mResult = mCalculator.calculateGP(mTotalCreditLoad, mTotalCreditUnit);
-
+            mFinalResult = String.valueOf(mResult);
             Intent calculationActivityIntent = new Intent(CalculationActivity.this, ResultActivity.class);
-            calculationActivityIntent.putExtra(Intent.EXTRA_TEXT, mResult);
+            calculationActivityIntent.putExtra(Intent.EXTRA_TEXT, mFinalResult);
             startActivity(calculationActivityIntent);
         });
 
