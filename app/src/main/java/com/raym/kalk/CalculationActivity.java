@@ -4,15 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.raym.kalk.models.Calculator;
+import com.raym.kalk.models.KalkDataManager;
 
 public class CalculationActivity extends AppCompatActivity {
-    private Button mDoneButton;
-    private Button mNextCourseButton;
-    private Button mPreviousButton;
     private EditText mCourseGrade;
     private EditText mCourseChoice;
     public Calculator mCalculator = new Calculator();
@@ -23,35 +22,47 @@ public class CalculationActivity extends AppCompatActivity {
     private int mGrade;
     private int mGradeEquivalent;
     private float mResult;
+    private int mCreditUnit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate);
-        mDoneButton = findViewById(R.id.done_button);
-        mPreviousButton = findViewById(R.id.previous_course_button);
-        mNextCourseButton = findViewById(R.id.next_course_button);
+
+        Button doneButton = findViewById(R.id.done_button);
+        Button previousButton = findViewById(R.id.previous_course_button);
+        Button nextCourseButton = findViewById(R.id.next_course_button);
         mCourseChoice = findViewById(R.id.edit_text_course_choice);
         mCourseGrade = findViewById(R.id.edit_text_grade);
-        //when the user clicks on the done button
-        mDoneButton.setOnClickListener(view -> {
-            mTotalCreditUnit = mCalculator.calculateTotalCreditUnits(5);
-            mCreditLoad = mCalculator.calculateCreditLoad(5, mGradeEquivalent);
+
+        nextCourseButton.setOnClickListener(view -> {
+
+            mCourseCode = mCourseChoice.getText().toString();
+            mCourseChoice.clearFocus();
+            mGrade = Integer.parseInt(mCourseGrade.getText().toString());
+            mCourseChoice.clearFocus();
+            mGradeEquivalent = checkGradeEquivalent(mGrade);
+            //we need to get the credit unit from the list of courses in our KalkDataManager class
+            KalkDataManager kalkDataManager = new KalkDataManager();
+            mCreditUnit = kalkDataManager.getCourse().getCreditUnit();
+            //TODO: Code to Check the inputed course with the data in the kalk dataManager here
+            //TODO: Get the credit Unit if the typed course is in accordance with what is in the database
+            mTotalCreditUnit = mCalculator.calculateTotalCreditUnits(mCreditUnit);
+
+            mCreditLoad = mCalculator.calculateCreditLoad(mCreditUnit, mGradeEquivalent);
             mTotalCreditLoad = mCalculator.calculateTotalCreditLoad(mCreditLoad);
+        });
+
+        //when the user clicks on the previous button
+        previousButton.setOnClickListener(view -> Toast.makeText(this, "Nothing to do yet", Toast.LENGTH_SHORT).show());
+
+        //when the user clicks on the done button
+        doneButton.setOnClickListener(view -> {
             mResult = mCalculator.calculateGP(mTotalCreditLoad, mTotalCreditUnit);
 
             Intent calculationActivityIntent = new Intent(CalculationActivity.this, ResultActivity.class);
             calculationActivityIntent.putExtra(Intent.EXTRA_TEXT, mResult);
             startActivity(calculationActivityIntent);
-        });
-        //when the user clicks on the previous button
-        mPreviousButton.setOnClickListener(view -> {
-
-        });
-        mNextCourseButton.setOnClickListener(view -> {
-            mCourseCode = mCourseChoice.getText().toString();
-            mGrade = Integer.parseInt(mCourseGrade.getText().toString());
-            checkGradeEquivalent(mGrade);
         });
 
     }
