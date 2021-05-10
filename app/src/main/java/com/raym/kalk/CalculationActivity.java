@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.raym.kalk.models.Calculator;
+import com.raym.kalk.models.Course;
 import com.raym.kalk.models.KalkDataManager;
 
 public class CalculationActivity extends AppCompatActivity {
@@ -39,7 +40,17 @@ public class CalculationActivity extends AppCompatActivity {
         nextCourseButton.setOnClickListener(view -> {
 
             mCourseCode = mCourseChoice.getText().toString();
+            String courseCode = mCourseCode.toUpperCase();
             mCourseChoice.clearFocus();
+
+            for (Course singleCourse : KalkDataManager.getInstance().getCourseArrayList()) {
+                String currentCourseCode = singleCourse.getCourseCode();
+                if (currentCourseCode.equals(courseCode)) {
+                    mCreditUnit = singleCourse.getCreditUnit();
+                } else {
+                    Toast.makeText(CalculationActivity.this, "INVALID COURSE INPUT", Toast.LENGTH_LONG).show();
+                }
+            }
             mGrade = Integer.parseInt(mCourseGrade.getText().toString());
             mCourseChoice.clearFocus();
             mGradeEquivalent = checkGradeEquivalent(mGrade);

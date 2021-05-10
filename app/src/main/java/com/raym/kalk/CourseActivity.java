@@ -41,18 +41,18 @@ public class CourseActivity extends AppCompatActivity {
         });
 
         mAddCourseButton.setOnClickListener(view -> {
-
             if (mCourseCode.equals(null) || mCourseCode.equals("")) {
                 finish();
             } else {
                 mCourseCode = mCourseCodeEditText.getText().toString();
+                String courseCode = mCourseCode.toUpperCase();
                 mCourseCodeEditText.clearComposingText();
                 mCourseCodeEditText.setText(null);
                 mCreditUnit = Integer.parseInt(mCreditUnitEditText.getText().toString());
                 mCreditUnitEditText.clearComposingText();
                 mCreditUnitEditText.setText(null);
 
-                mSingleCourse = new Course(mCourseCode, mCreditUnit);
+                mSingleCourse = new Course(courseCode, mCreditUnit);
 
                 mCoursesArrayList.add(mSingleCourse);
 
