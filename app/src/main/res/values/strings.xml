@@ -7,4 +7,6 @@
     <string name="input_grade">Input Grade</string>
     <string name="grade_hint"><i>Example: "75"</i></string>
     <string name="done">done</string>
+    <string name="your_calculated_grade_point_average_is">Your Calculated Grade Point Average is:</string>
+    <string name="default_result">5.00</string>
 </resources>

@@ -2,7 +2,6 @@ package com.raym.kalk;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -10,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.raym.kalk.models.Course;
+import com.raym.kalk.models.KalkDataManager;
 
 import java.util.ArrayList;
 
@@ -35,32 +35,30 @@ public class CourseActivity extends AppCompatActivity {
         mCalculateGpButton = findViewById(R.id.calculate_gp);
         mAddCourseButton = findViewById(R.id.button_add_course);
 
-        mCalculateGpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent courseActivityIntent = new Intent(CourseActivity.this, CalculationActivity.class);
-                startActivity(courseActivityIntent);
-            }
+        mCalculateGpButton.setOnClickListener(view -> {
+            Intent courseActivityIntent = new Intent(CourseActivity.this, CalculationActivity.class);
+            startActivity(courseActivityIntent);
         });
 
-        mAddCourseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        mAddCourseButton.setOnClickListener(view -> {
 
+            if (mCourseCode.equals(null) || mCourseCode.equals("")) {
+                finish();
+            } else {
                 mCourseCode = mCourseCodeEditText.getText().toString();
                 mCourseCodeEditText.clearComposingText();
+                mCourseCodeEditText.setText(null);
                 mCreditUnit = Integer.parseInt(mCreditUnitEditText.getText().toString());
                 mCreditUnitEditText.clearComposingText();
+                mCreditUnitEditText.setText(null);
+
                 mSingleCourse = new Course(mCourseCode, mCreditUnit);
 
                 mCoursesArrayList.add(mSingleCourse);
 
-                if (mCourseCode.equals("")) {
-                    Toast.makeText(CourseActivity.this, "INVALID REQUEST", Toast.LENGTH_LONG).show();
-                    finish();
-                } else {
-                    Toast.makeText(CourseActivity.this, "ADDED", Toast.LENGTH_LONG).show();
-                }
+                KalkDataManager.getInstance().setCourseArrayList(mCourseArrayList);
+
+                Toast.makeText(CourseActivity.this, "ADDED", Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -8,21 +8,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ResultActivity extends AppCompatActivity {
 
-    private TextView mNoticeGradeResult;
-    private TextView mGradeResult;
-    private String mFinalResult;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        mNoticeGradeResult = findViewById(R.id.notice_grade_result);
-        mGradeResult = findViewById(R.id.grade_result);
+        TextView noticeGradeResult = findViewById(R.id.notice_grade_result);
+        TextView gradeResult = findViewById(R.id.grade_result);
 
         Intent calculationActivityIntent = getIntent();
-        mFinalResult = calculationActivityIntent.getStringExtra(Intent.EXTRA_TEXT);
-        mGradeResult.setText(mFinalResult);
+        String finalResult = calculationActivityIntent.getStringExtra(Intent.EXTRA_TEXT);
+        gradeResult.setText(finalResult);
     }
 
 }

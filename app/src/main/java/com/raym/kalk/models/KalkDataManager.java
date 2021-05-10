@@ -23,6 +23,10 @@ public class KalkDataManager {
         return ourInstance;
     }
 
+    public int getCurrentCoursePosition(List<Course> courses) {
+        return courses.size() - 1;
+    }
+
     public Course getCourse() {
         return mCourse;
     }
