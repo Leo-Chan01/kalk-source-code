@@ -49,14 +49,15 @@ public class CalculationActivity extends AppCompatActivity {
                     mCreditUnit = singleCourse.getCreditUnit();
                 } else {
                     Toast.makeText(CalculationActivity.this, "INVALID COURSE INPUT", Toast.LENGTH_LONG).show();
+                    mCourseChoice.setText(null);
                 }
             }
+
             mGrade = Integer.parseInt(mCourseGrade.getText().toString());
             mCourseChoice.clearFocus();
             mGradeEquivalent = checkGradeEquivalent(mGrade);
             //we need to get the credit unit from the list of courses in our KalkDataManager class
-            KalkDataManager kalkDataManager = new KalkDataManager();
-            mCreditUnit = kalkDataManager.getCourse().getCreditUnit();
+            mCreditUnit = KalkDataManager.getInstance().getCourse().getCreditUnit();
             //TODO: Code to Check the inputed course with the data in the kalk dataManager here
             //TODO: Get the credit Unit if the typed course is in accordance with what is in the database
             mTotalCreditUnit = mCalculator.calculateTotalCreditUnits(mCreditUnit);
