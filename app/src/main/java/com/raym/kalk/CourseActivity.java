@@ -42,7 +42,7 @@ public class CourseActivity extends AppCompatActivity {
 
         mAddCourseButton.setOnClickListener(view -> {
             if (mCourseCode.equals(null) || mCourseCode.equals("")) {
-                finish();
+                Toast.makeText(CourseActivity.this, "NO DATA!!", Toast.LENGTH_SHORT).show();
             } else {
                 mCourseCode = mCourseCodeEditText.getText().toString();
                 String courseCode = mCourseCode.toUpperCase();
