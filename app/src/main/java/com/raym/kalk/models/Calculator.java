@@ -1,12 +1,14 @@
 package com.raym.kalk.models;
 
+/***Created by Leo*/
+
 public class Calculator {
-    int mCreditUnit;
-    int mGradeValue;
-    float mResult;
-    int mCreditLoad;
-    int mTotalCreditUnits;
-    int mTotalCreditLoad;
+    int mCreditUnit = 0;
+    int mGradeValue = 0;
+    float mResult = 0;
+    int mCreditLoad = 0;
+    int mTotalCreditUnits = 0;
+    int mTotalCreditLoad = 0;
 
     public int calculateTotalCreditUnits(int creditUnit) {
         mTotalCreditUnits += creditUnit;

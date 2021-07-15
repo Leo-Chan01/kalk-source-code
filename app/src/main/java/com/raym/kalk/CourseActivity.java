@@ -13,6 +13,8 @@ import com.raym.kalk.models.KalkDataManager;
 
 import java.util.ArrayList;
 
+/***Created by Leo*/
+
 public class CourseActivity extends AppCompatActivity {
 
     private final ArrayList<Course> mCourseArrayList = new ArrayList<>();
@@ -41,25 +43,29 @@ public class CourseActivity extends AppCompatActivity {
         });
 
         mAddCourseButton.setOnClickListener(view -> {
-            if (mCourseCode.equals(null) || mCourseCode.equals("")) {
-                Toast.makeText(CourseActivity.this, "NO DATA!!", Toast.LENGTH_SHORT).show();
-            } else {
-                mCourseCode = mCourseCodeEditText.getText().toString();
-                String courseCode = mCourseCode.toUpperCase();
-                mCourseCodeEditText.clearComposingText();
-                mCourseCodeEditText.setText(null);
-                mCreditUnit = Integer.parseInt(mCreditUnitEditText.getText().toString());
-                mCreditUnitEditText.clearComposingText();
-                mCreditUnitEditText.setText(null);
+            //get the course code and credit unit from the user and convert them to a string and
+            //and int respectively assign them to their respective variables and clear their fields
+            mCourseCode = mCourseCodeEditText.getText().toString();
+            String courseCode = mCourseCode.toUpperCase();
+            mCourseCodeEditText.setText(null);
 
-                mSingleCourse = new Course(courseCode, mCreditUnit);
+            mCreditUnit = Integer.parseInt(mCreditUnitEditText.getText().toString());
+            int cu = mCreditUnit;
+            mCreditUnitEditText.setText(null);
 
-                mCoursesArrayList.add(mSingleCourse);
+            //pass it to them single object of the Course class
+            mSingleCourse = new Course(courseCode, cu);
 
-                KalkDataManager.getInstance().setCourseArrayList(mCourseArrayList);
+            //set those variables into our course class
+            mSingleCourse.setCourseCode(courseCode);
+            mSingleCourse.setCreditUnit(cu);
 
-                Toast.makeText(CourseActivity.this, "ADDED", Toast.LENGTH_LONG).show();
-            }
+            //finally add that single set course in our arraylist of courses
+            mCoursesArrayList.add(mSingleCourse);
+
+            KalkDataManager.getInstance().setCourseArrayList(mCoursesArrayList);
+
+            Toast.makeText(CourseActivity.this, "ADDED", Toast.LENGTH_LONG).show();
         });
     }
 }
