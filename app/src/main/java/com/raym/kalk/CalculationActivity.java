@@ -9,6 +9,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.raym.kalk.models.Calculator;
+import com.raym.kalk.models.Course;
+import com.raym.kalk.models.KalkDataManager;
+
+import java.util.ArrayList;
 
 /***Created by Leo*/
 
@@ -25,7 +29,8 @@ public class CalculationActivity extends AppCompatActivity {
     private float mResult;
     private final int mCreditUnit = 3;
     public String mFinalResult;
-    String emptyPlace = "";
+    static String EMPTY_PLACE = "";
+    ArrayList<Course> arrayListOfCourses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +44,26 @@ public class CalculationActivity extends AppCompatActivity {
         mCourseGrade = findViewById(R.id.edit_text_grade);
 
         nextCourseButton.setOnClickListener(view -> {
-            mCourseCode = mCourseChoice.getText().toString();
+            //to compare this data, we should get the array list first then we get a single course
+            //make it a string to efficiently compare
+            arrayListOfCourses = (ArrayList<Course>) KalkDataManager.getInstance().getCourseArrayList();
+            String singleCourse = KalkDataManager.getInstance().getCourse().toString();
+
             String courseCode = mCourseCode.toUpperCase();
-            mCourseChoice.setText(emptyPlace);
+            mCourseCode = mCourseChoice.getText().toString();
+
+            for (Course single_course :
+                    arrayListOfCourses) {
+                if (singleCourse.equals(courseCode)) {
+
+                }
+            }
+            mCourseChoice.setText(EMPTY_PLACE);
             mGrade = Integer.parseInt(mCourseGrade.getText().toString());
-            mCourseChoice.setText(emptyPlace);
+            mCourseGrade.setText(EMPTY_PLACE);
             mGradeEquivalent = checkGradeEquivalent(mGrade);
-            //we need to get the credit unit from the list of courses in our KalkDataManager class
-            //mCreditUnit = KalkDataManager.getInstance().getCourse().getCreditUnit();
-            //TODO: Code to Check the inputed course with the data in the kalk dataManager here
-            //TODO: Get the credit Unit if the typed course is in accordance with what is in the database
+            mCourseChoice.setFocusable(true);
+
             mTotalCreditUnit = mCalculator.calculateTotalCreditUnits(mCreditUnit);
             mCreditLoad = mCalculator.calculateCreditLoad(mCreditUnit, mGradeEquivalent);
             mTotalCreditLoad = mCalculator.calculateTotalCreditLoad(mCreditLoad);
@@ -68,18 +83,23 @@ public class CalculationActivity extends AppCompatActivity {
 
     private int checkGradeEquivalent(int grade) {
         if (grade >= 75) {
-            return mGradeEquivalent = 5;
-        }
-        if (grade > 59 && grade < 69) {
-            return mGradeEquivalent = 4;
-        }
-        if (grade > 49 && grade < 59) {
-            return mGradeEquivalent = 3;
-        }
-        if (grade > 39 && grade <= 49) {
-            return mGradeEquivalent = 2;
-        } else if (grade <= 39) {
-            return mGradeEquivalent = 0;
+            //for A; greater than 75
+            mGradeEquivalent = 5;
+        } else if (grade > 59) {
+            //for B; greater than 60, but less than 75
+            mGradeEquivalent = 4;
+        } else if (grade > 50) {
+            //for C; greater than 50, but less than 60
+            mGradeEquivalent = 3;
+        } else if (grade > 44) {
+            //for D; greater than 45 and less than 50
+            mGradeEquivalent = 2;
+        } else if (grade > 39) {
+            //for E; greater than 39
+            mGradeEquivalent = 1;
+        } else {
+            //for F
+            mGradeEquivalent = 0;
         }
         return mGradeEquivalent;
     }

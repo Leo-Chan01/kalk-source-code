@@ -26,6 +26,7 @@ public class CourseActivity extends AppCompatActivity {
     private String mCourseCode;
     private int mCreditUnit;
     private final ArrayList<Course> mCoursesArrayList = new ArrayList<>();
+    static String EMPTY = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +46,16 @@ public class CourseActivity extends AppCompatActivity {
         mAddCourseButton.setOnClickListener(view -> {
             //get the course code and credit unit from the user and convert them to a string and
             //and int respectively assign them to their respective variables and clear their fields
+            /*for course code*/
             mCourseCode = mCourseCodeEditText.getText().toString();
             String courseCode = mCourseCode.toUpperCase();
-            mCourseCodeEditText.setText(null);
-
+            mCourseCodeEditText.setText(EMPTY);
+            /*for credit unit*/
             mCreditUnit = Integer.parseInt(mCreditUnitEditText.getText().toString());
             int cu = mCreditUnit;
-            mCreditUnitEditText.setText(null);
+            mCreditUnitEditText.setText(EMPTY);
 
-            //pass it to them single object of the Course class
+            //pass it to the single object of the Course class
             mSingleCourse = new Course(courseCode, cu);
 
             //set those variables into our course class
@@ -63,8 +65,10 @@ public class CourseActivity extends AppCompatActivity {
             //finally add that single set course in our arraylist of courses
             mCoursesArrayList.add(mSingleCourse);
 
+            //pass that list to our data manager
             KalkDataManager.getInstance().setCourseArrayList(mCoursesArrayList);
 
+            //when done display a success toast
             Toast.makeText(CourseActivity.this, "ADDED", Toast.LENGTH_LONG).show();
         });
     }

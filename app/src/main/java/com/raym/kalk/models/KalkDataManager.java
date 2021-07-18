@@ -18,6 +18,7 @@ public class KalkDataManager {
 
     }
 
+    //singleton construction
     public static KalkDataManager getInstance() {
         if (ourInstance == null) {
             ourInstance = new KalkDataManager();
